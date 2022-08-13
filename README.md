@@ -4,6 +4,16 @@ Create an app for the Google Play Store that features nursery songs for children
 
 [Udemy course used](https://www.udemy.com/course/the-complete-react-native-and-redux-course/learn/lecture/15706480)
 
+# General Questions and Barriers
+- How will I know what language the user prefers?
+- How do I play music?
+  - https://www.youtube.com/watch?v=fOtCxD3AodY
+  - https://www.youtube.com/watch?v=-F8twDee9rA
+- How to I configure notifications for the app, such as when to play music for the child?
+- 
+
+
+
 # DATABASE:
 [Options available (StackOverflow)](https://stackoverflow.com/questions/44376002/what-are-my-options-for-storing-data-when-using-react-native-ios-and-android)
 [Picking a database to use for my app (YT)](https://www.youtube.com/watch?v=NxyvPltvvBE)
@@ -54,12 +64,10 @@ January 1, 1927.
 | Hot Cross Buns | Mozart Variations of "Ah! Vous Dirai-je Maman" (Theme,Var.1,3,5,8,9,11) K.265 |
 | Are You Sleeping? (Two Tigers) | Mozart Piano Sonata no.11 in A Major, Movt. 1 K.331 |
 | London Bridge Is Falling Down | Mozart Piano Sonata no.11 in A Major, Movt. 3 "Rondo alla Turca" K.331 |
-| Alouette (Alouette, the Lark) | Mozart Piano Sonata no.5 in G Major, I. "Allegro" K.382 |
-| If You're Happy And You Know It | Mozart Piano Sonata no.5 in G Major, I. "Allegro" K.382 |
-| Three Blind Mice | Chopin op. 57 |
-| Mary had a Little Lamb | Chopin Op. 28 No. 15 |
-| | Bach prelude in C BVW 846 |
-| | Debussy Clair de Lune |
+| Alouette (Alouette, the Lark) | Chopin Op. 57 |
+| If You're Happy And You Know It | Chopin Op. 28 No. 15 |
+| Three Blind Mice | Bach prelude in C BVW 846 |
+| Mary had a Little Lamb | Debussy Clair de Lune |
 
 # Recordings Used
 
@@ -70,12 +78,14 @@ _Note: All of the nursery song recordings were originals._
 
 
 # Future Songs
+- Mozart Piano Sonata no.5 in G Major, I. "Allegro" K.283 (Originally thought of this, may be too intense in some parts.)
 - Chopin Nouvelle Etude No. 2
 - Bach Minuet in G major, BWV Anh. 114
 - [~~Beethoven: Sonata No.20 in G Major, Op.49 No.2 Movt. 2~~](https://musopen.org/music/45-piano-sonata-no-20-in-g-major-op-49-no-2/) [License](https://creativecommons.org/publicdomain/mark/1.0/)
 - Chopin Waltz in A minor
 - Pathetique Sonata, 2nd Mvt.
 - [~~Chopin Nocturne Op. 32 No. 1 in B Major~~](https://musopen.org/music/109-nocturnes-op-32/) [License](https://creativecommons.org/publicdomain/mark/1.0/)
+
 
 Nursery:
 - She'll be coming round the mountain when she comes
@@ -86,8 +96,9 @@ Nursery:
 # Sources of Revenue
 - Banner ads
 - Affiliate Marketing
+- 
 
 # Future Features
 - Implement a keyboard for infants to use in order to learn how to play the basic
 nursery melodies.
-
+- Paulstretch to advertise with speakers to place over belly

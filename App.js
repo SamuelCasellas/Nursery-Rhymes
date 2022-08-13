@@ -1,20 +1,31 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from "react";
+import { createAppContainer } from "react-navigation";
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+import { createSwitchNavigator } from "react-navigation";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { createStackNavigator } from "react-navigation-stack";
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+import { Provider as MusicProvider } from "./src/context/MusicContext";
+
+import TitleScreen from "./src/screens/TitleScreen";
+import PlayMusicScreen from "./src/screens/PlayMusicScreen";
+
+const navigator = createStackNavigator({
+  Title: TitleScreen,
+  Music: PlayMusicScreen
+}, {
+  initialRouteName: "Music",
+  navigationOptions: {
+    title: "APP_NAME"
+  }
 });
+
+const App = createAppContainer(navigator);
+
+export default () => {
+  return (
+    <MusicProvider>
+      <App />
+    </MusicProvider>
+  );
+};
