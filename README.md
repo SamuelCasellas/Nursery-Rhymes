@@ -10,11 +10,12 @@ Create an app for the Google Play Store that features nursery songs for children
   - https://www.youtube.com/watch?v=fOtCxD3AodY
   - https://www.youtube.com/watch?v=-F8twDee9rA
 - How to I configure notifications for the app, such as when to play music for the child?
-- 
+- [How do I create a popup screen?](https://github.com/react-native-modal/react-native-modal)
+- Best way to do animation (for rotating disk [native add possibly..] and for startup loading screen with logo)? Manually through math functions and playing with margins, or some better way?
+- Figure out the database*
 
 
-
-# DATABASE:
+# DATABASE*:
 [Options available (StackOverflow)](https://stackoverflow.com/questions/44376002/what-are-my-options-for-storing-data-when-using-react-native-ios-and-android)
 [Picking a database to use for my app (YT)](https://www.youtube.com/watch?v=NxyvPltvvBE)
 Options to look at:
@@ -61,13 +62,13 @@ January 1, 1927.
 | Lavender Blue (Originally published in 1877, author Walter Crane deceased since 1915) ([Licence](https://commons.wikimedia.org/wiki/File:The_Baby%27s_Opera_A_book_of_old_Rhymes_and_The_Music_by_the_Earliest_Masters_Book_Cover_11.png))| Mozart Andante. Sonate KV 545 Movt. 1 |
 | Row, Row, Row Your Boat (Origianlly published in 1852, composer Eliphalet Oram Lyte deceased since 1913) ([License](https://commons.wikimedia.org/wiki/File:Row_your_boat.svg)) | Mozart Andante. Sonate KV 545 Movt. 2 |
 | Old McDonald Had A Farm (Alledged composer Thomas d'Urfey deceased since 1723) [Article](https://en.wikipedia.org/wiki/Old_MacDonald_Had_a_Farm) | Mozart Andante. Sonate KV 545 Movt. 3 |
-| Hot Cross Buns | Mozart Variations of "Ah! Vous Dirai-je Maman" (Theme,Var.1,3,5,8,9,11) K.265 |
+| Hot Cross Buns | ~~Mozart Variations of "Ah! Vous Dirai-je Maman" (Theme,Var.1,3,5,8,9,11) K.265~~ |
 | Are You Sleeping? (Two Tigers) | Mozart Piano Sonata no.11 in A Major, Movt. 1 K.331 |
-| London Bridge Is Falling Down | Mozart Piano Sonata no.11 in A Major, Movt. 3 "Rondo alla Turca" K.331 |
+| London Bridge Is Falling Down | ~~Mozart Piano Sonata no.11 in A Major, Movt. 3 "Rondo alla Turca" K.331~~ |
 | Alouette (Alouette, the Lark) | Chopin Op. 57 |
 | If You're Happy And You Know It | Chopin Op. 28 No. 15 |
 | Three Blind Mice | Bach prelude in C BVW 846 |
-| Mary had a Little Lamb | Debussy Clair de Lune |
+| Mary had a Little Lamb | ~~Debussy Clair de Lune~~ |
 
 # Recordings Used
 

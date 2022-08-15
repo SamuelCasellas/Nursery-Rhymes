@@ -1,16 +1,27 @@
-import React from "react";
+import React, { useContext } from "react";
 import { SafeAreaView, View, StyleSheet } from "react-native";
 import { Text } from "react-native-elements"
 import MusicShowcase from "../components/MusicShowcase";
-import MusicPlayer from "../components/MusicPlayer";
+import MusicPlayerUi from "../components/MusicPlayerUi";
+import { Context as SettingsContext } from "../context/SettingsContext";
+import timeLogic from "../hooks/timeLogic";
+import checkNightMode from "../hooks/checkNightMode";
 
 const PlayMusicScreen = () => {
+  const { state: { nightMode } } = useContext(SettingsContext);
+
+  const { isDark, getHourOfDay } = timeLogic();
+
+  let color;
+  checkNightMode(nightMode)
+  ? color = "#222831"
+  : color = "white"
+
   return (
-    <SafeAreaView style={styles.container}>
-      <View style={styles.mainContainer}>
+    <SafeAreaView style={{ ...styles.mainContainer, backgroundColor: color }}>
         <MusicShowcase />
-        <MusicPlayer />
-      </View>
+        <MusicPlayerUi />
+        <Text h1>{getHourOfDay()}</Text>
     </SafeAreaView>
   );
 };
@@ -18,12 +29,13 @@ const PlayMusicScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-   // backgroundColor: "#346234"
+    // backgroundColor: "#222831"
+    // Night background color; #222831
   },
   mainContainer: {
-    // flex: 1,
-    // alignItems: "center",
-    // justifyContent: "center",
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
   }
 });
 
