@@ -1,9 +1,9 @@
 import React from "react";
 import { createAppContainer } from "react-navigation";
 
+// Using React Navigation v.4 in line with Udemy tutorial
 import { createSwitchNavigator } from "react-navigation";
-// import currently not working
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { createBottomTabNavigator } from "react-navigation-tabs";
 import { createStackNavigator } from "react-navigation-stack";
 
 import { Provider as MusicProvider } from "./src/context/MusicContext";
@@ -15,10 +15,17 @@ import PlayMusicScreen from "./src/screens/PlayMusicScreen";
 import SMCScreen from "./src/screens/SMCScreen";
 import SettingsScreen from "./src/screens/SettingsScreen";
 
+import { Ionicons } from '@expo/vector-icons';
+
 const musicFlow = createStackNavigator({
   ShowTracks: ShowTracksScreen,
   PlayMusic: PlayMusicScreen
 });
+
+musicFlow.navigationOptions = {
+  title: "Music",
+  tabBarIcon: <Ionicons name="musical-notes" size={24} color="black" />
+};
 
 const mainMenuTabFlow = createBottomTabNavigator({
   musicFlow,
@@ -30,22 +37,20 @@ const switchNavigator = createSwitchNavigator({
   Title: TitleScreen,
   mainMenuTabFlow
 }, 
-// {
-//   initialRouteName: "Title",
-//   navigationOptions: {
-//     title: "APP_NAME"
-//   }
-// }
+{
+  initialRouteName: "Title",
+  navigationOptions: {
+    title: "APP_NAME"
+  }
+}
 );
 
 const App = createAppContainer(switchNavigator);
 
-export default () => {
-  return (
-    <SettingsProvider>
-      <MusicProvider>   
-        <App />
-      </MusicProvider>
-    </SettingsProvider>
-  );
-};
+export default () => (
+  <SettingsProvider>
+    <MusicProvider>
+      <App />
+    </MusicProvider>
+  </SettingsProvider>
+);
