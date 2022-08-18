@@ -4,10 +4,13 @@ import { Text } from "react-native-elements"
 import { Context as SettingsContext } from "../context/SettingsContext";
 import DropDownPicker from "react-native-dropdown-picker";
 import Container from "./Container";
+import nightColors from "../hooks/nightColors";
 
 import { FontAwesome } from "@expo/vector-icons";
 
 const { width, height } = Dimensions.get("window");
+const { textColor } = nightColors();
+
 const SettingsScreen = () => {
   
   const { changeNightMode } = useContext(SettingsContext);
@@ -22,8 +25,8 @@ const SettingsScreen = () => {
 
   const children = (
     <View>
-      <Text h1>SettingsScreen</Text>
-      <Text h4>Theme:</Text>
+      <Text h1 style={styles.text}>SettingsScreen</Text>
+      <Text h4 style={styles.text}>Theme:</Text>
       <DropDownPicker
         style={styles.dropdown}
         open={open}
@@ -46,6 +49,9 @@ SettingsScreen.navigationOptions = {
 };
 
 const styles = StyleSheet.create({
+  text: {
+    color: textColor
+  },
   dropdown: {
     width: width * 0.8,
     marginLeft: 15

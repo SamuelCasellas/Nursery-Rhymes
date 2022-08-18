@@ -49,7 +49,6 @@ export default () => {
 const getHourOfDay = function () {
   let today = new Date;
   let hours = today.getHours();
-  console.log("BUENO???")
   return hours;
 };
 

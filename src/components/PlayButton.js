@@ -6,13 +6,14 @@ import { Context as MusicContext } from "../context/MusicContext";
 
 const PlayButton = () => {
   const width = 20;
-  const { state, playPause } = useContext(MusicContext);
+  const { state: { playing }, playPause } = useContext(MusicContext);
   let iconName;
-  state.playing ? iconName = "pause" : iconName = "play";
+  playing ? iconName = "pause" : iconName = "play";
 
   return (
     <View>
       <FontAwesome5 style={styles.playButton} name={iconName} size={24} color="#777777" />
+      {/* Placing touchable opacity around the icon exagerates touchable space */}
       <TouchableOpacity 
         style={styles.touchSpace} 
         hitSlop={{top: width, bottom: width+4, left: width, right: width}} 

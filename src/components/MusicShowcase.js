@@ -2,29 +2,41 @@ import React, { useContext, useEffect, useRef, useState } from "react";
 import { View, StyleSheet, FlatList } from "react-native";
 import { Text } from "react-native-elements";
 import { Context as MusicContext } from "../context/MusicContext";
+import { Context as SettingsContext } from "../context/SettingsContext";
+import nightColors from "../hooks/nightColors";
 
 import Slider from "@react-native-community/slider";
 import classicalSongs from "../models/classicalSongs";
 
 const MusicShowcase = () => {
-  const { state } = useContext(MusicContext);
+  const { state: { currentTrackId } } = useContext(MusicContext);
+  const currentTrack = classicalSongs.find((track) => track.id === currentTrackId);
 
-  let color = "#FFF";
+  const { state: { nightMode } } = useContext(SettingsContext);
+  const { textColor, maxTrackTintColor } = nightColors(nightMode);
 
-  // const renderSongs = ({ index, item }) => {
-  //   return (
-  //     <View style={{}}>
+  const songSlider = useRef(null);
 
-  //     </View>
-  //   )
-  // };
+  const renderSongs = ({ index, item }) => {
+    return (
+      <View style={{}}>
+        <Text>{item.title}</Text>
+      </View>
+    )
+  };
 
   return (
     <>
       <View>
-        {/* <Text style={styles.songTitle}>Currently playing: {state.currentTrack}</Text> */}
-        {/* <FlatList
+        <Text style={{ ...styles.songTitle, color: textColor }}>Currently playing: {currentTrack.title}</Text>
+         {/* <FlatList
           data={classicalSongs}
+          keyExtractor={(item) => item.id}
+          renderItem={renderSongs}
+          horizontal
+          pagingEnabled
+          showsHorizontalScrollIndicator={false}
+          scrollEventThrottle={16}
         /> */}
       </View>
       <View> 
@@ -35,12 +47,12 @@ const MusicShowcase = () => {
           maximumValue={100}
           thumbTintColor="#FFD369"
           minimumTrackTintColor="#FFD369"
-          maximumTrackTintColor="#FFF"
+          maximumTrackTintColor={maxTrackTintColor}
           onSlidingComplete={()=>{}}
         />
         <View style={styles.trackProgress}>
-          <Text style={{ color }}>0:00</Text>
-          <Text style={{ color }}>3:50</Text>
+          <Text style={{ color: textColor }}>0:00</Text>
+          <Text style={{ color: textColor }}>3:50</Text>
         </View>
       </View>
 
@@ -53,7 +65,6 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: "600",
     textAlign: "center",
-    color: "#EEEEEE"
   },
   slider: {
     width: 350,

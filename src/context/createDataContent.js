@@ -1,4 +1,5 @@
-/* Helper function for creating new components that can be accessed anywhere.
+/* Helper function for creating states and their 
+associated actions that can be accessed anywhere.
 */
 
 import React, { useReducer } from "react";
