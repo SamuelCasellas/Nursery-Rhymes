@@ -12,15 +12,14 @@ const { width, height } = Dimensions.get("window");
 const { textColor } = nightColors();
 
 const SettingsScreen = () => {
-  
-  const { changeNightMode } = useContext(SettingsContext);
+  const { state: { nightMode }, changeNightMode } = useContext(SettingsContext);
   const [open, setOpen] = useState(false);
   // TODO: change this to a useEffect so that there is not a frame that shows that the setting is still select an option
-  const [value, setValue] = useState(0);
+  const [value, setValue] = useState(nightMode);
   const [items, setItems] = useState([
-    { label: "Light", value: 0 },
-    { label: "Dark", value: 1 },
-    { label: "Auto", value: 2 }
+    { label: "Light", value: "0" },
+    { label: "Dark", value: "1" },
+    { label: "Auto", value: "2" }
   ]);
 
   const children = (
