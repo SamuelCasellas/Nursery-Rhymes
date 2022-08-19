@@ -5,7 +5,7 @@ import { createAppContainer } from "react-navigation";
 import { createSwitchNavigator } from "react-navigation";
 import { createBottomTabNavigator } from "react-navigation-tabs";
 import { createStackNavigator } from "react-navigation-stack";
-import { createDrawerNavigator } from "react-navigation-drawer";
+// import { createDrawerNavigator } from "react-navigation-drawer";
 
 import { Provider as MusicProvider } from "./src/context/MusicContext";
 import { Provider as SettingsProvider } from "./src/context/SettingsContext";
@@ -13,6 +13,7 @@ import { Provider as SettingsProvider } from "./src/context/SettingsContext";
 import TitleScreen from "./src/screens/TitleScreen";
 
 import ShowTracksScreen from "./src/screens/ShowTracksScreen";
+import ViewPlaylistsScreen from "./src/screens/ViewPlaylistsScreen";
 import CreatePlaylistScreen from "./src/screens/CreatePlaylistScreen";
 import PlayMusicScreen from "./src/screens/PlayMusicScreen";
 
@@ -23,6 +24,7 @@ import { Ionicons } from '@expo/vector-icons';
 
 const musicFlow = createStackNavigator({
   ShowTracks: ShowTracksScreen,
+  ViewPlaylists: ViewPlaylistsScreen,
   CreatePlaylist: CreatePlaylistScreen,
   PlayMusic: PlayMusicScreen
 });

@@ -1,8 +1,9 @@
 import React, { useContext } from "react";
-import { View, StyleSheet, FlatList } from "react-native";
+import { View, StyleSheet, FlatList, TouchableOpacity } from "react-native";
 import { Text } from "react-native-elements";
 import { Context as MusicContext } from "../context/MusicContext";
 import { Context as SettingsContext } from "../context/SettingsContext";
+import PlaylistButton from "../components/PlaylistButton";
 import SingleTrack from "../components/SingleTrack";
 import BottomPlayer from "../components/BottomPlayer";
 import AdBanner from "../components/AdBanner";
@@ -24,7 +25,8 @@ const ShowTracksScreen = ({ navigation }) => {
 
   const children = (
     <>
-      <Text h1 style={{ color: textColor }}>Good {getTimeOfDay()}</Text>
+      <Text h1 style={{ ...styles.greeting, color: textColor }}>Good {getTimeOfDay()}</Text>
+      <PlaylistButton buttonName="playlist-music" navTo="ViewPlaylists" color={textColor}/>
       {/* List of songs */}
       <FlatList 
         style={styles.songList}
@@ -47,7 +49,16 @@ const ShowTracksScreen = ({ navigation }) => {
   return <Container children={children} />;
 };
 
+ShowTracksScreen.navigationOptions = () => ({
+  headerShown: false,
+});
+
 const styles = StyleSheet.create({
+  greeting: {
+    marginTop: 10,
+    marginLeft: 10,
+    fontStyle: "italic",
+  },
   songList: {
     width
   },

@@ -5,14 +5,16 @@ import { Context as SettingsContext } from "../context/SettingsContext";
 import DropDownPicker from "react-native-dropdown-picker";
 import Container from "./Container";
 import nightColors from "../hooks/nightColors";
+import { NavigationEvents } from "react-navigation";
 
 import { FontAwesome } from "@expo/vector-icons";
 
 const { width, height } = Dimensions.get("window");
-const { textColor } = nightColors();
 
 const SettingsScreen = () => {
   const { state: { nightMode }, changeNightMode } = useContext(SettingsContext);
+  const { textColor } = nightColors(nightMode);
+
   const [open, setOpen] = useState(false);
   // TODO: change this to a useEffect so that there is not a frame that shows that the setting is still select an option
   const [value, setValue] = useState(nightMode);
@@ -24,8 +26,11 @@ const SettingsScreen = () => {
 
   const children = (
     <View>
-      <Text h1 style={styles.text}>SettingsScreen</Text>
-      <Text h4 style={styles.text}>Theme:</Text>
+      <NavigationEvents
+        onDidBlur={() => setOpen(false)}
+      />
+      <Text h1 style={{ ...styles.text, color: textColor }}>SettingsScreen</Text>
+      <Text h4 style={{ ...styles.text, color: textColor }}>Theme:</Text>
       <DropDownPicker
         style={styles.dropdown}
         open={open}
@@ -49,7 +54,7 @@ SettingsScreen.navigationOptions = {
 
 const styles = StyleSheet.create({
   text: {
-    color: textColor
+
   },
   dropdown: {
     width: width * 0.8,

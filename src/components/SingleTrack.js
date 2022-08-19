@@ -21,14 +21,13 @@ const SingleTrack = ({navigation, index, track, action, textColor}) => {
 const styles = StyleSheet.create({
   track: {
     borderTopWidth: 1,
-
     borderTopColor: "black",
     borderBottomColor: "black",
     marginHorizontal: 20,
     flexDirection: "row",
     height: 50,
-    justifyContent: "space-between"
-
+    justifyContent: "space-between",
+    alignItems: "center"
   }
 });
 
