@@ -4,13 +4,16 @@ import { Text } from "react-native-elements";
 import { Context as MusicContext } from "../context/MusicContext";
 import { Context as SettingsContext } from "../context/SettingsContext";
 import nightColors from "../hooks/nightColors";
+import Constants from "../Constants";
+
+const { width, height } = Constants();
 
 import Slider from "@react-native-community/slider";
-import classicalSongs from "../models/classicalSongs";
+import { allSongs } from "../models/allSongs";
 
 const MusicShowcase = () => {
   const { state: { currentTrackId } } = useContext(MusicContext);
-  const currentTrack = classicalSongs.find((track) => track.id === currentTrackId);
+  const currentTrack = allSongs.find((track) => track.id === currentTrackId);
 
   const { state: { nightMode } } = useContext(SettingsContext);
   const { textColor, maxTrackTintColor } = nightColors(nightMode);
@@ -30,7 +33,7 @@ const MusicShowcase = () => {
       <View>
         <Text style={{ ...styles.songTitle, color: textColor }}>Currently playing: {currentTrack.title}</Text>
          {/* <FlatList
-          data={classicalSongs}
+          data={allSongs}
           keyExtractor={(item) => item.id}
           renderItem={renderSongs}
           horizontal
@@ -39,7 +42,7 @@ const MusicShowcase = () => {
           scrollEventThrottle={16}
         /> */}
       </View>
-      <View> 
+      <View style={{ width: width * 0.9 }}> 
         <Slider 
           style={styles.slider}
           value={10}
@@ -62,18 +65,18 @@ const MusicShowcase = () => {
 
 const styles = StyleSheet.create({
   songTitle: {
+    marginTop: -185,
     fontSize: 18,
     fontWeight: "600",
     textAlign: "center",
   },
   slider: {
-    width: 350,
     height: 40,
     marginTop: 25,
     flexDirection: "row"
   },
   trackProgress: {
-    width: 340,
+    marginHorizontal: 20,
     height: 40,
     flexDirection: "row",
     justifyContent: "space-between",

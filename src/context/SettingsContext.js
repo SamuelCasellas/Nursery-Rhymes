@@ -7,6 +7,8 @@ const settingsReducer = (state, action) => {
   switch (action.type) {
     case "change_night_mode":
       return { ...state, nightMode: action.payload }
+    case "change_do_not_disturb":
+      return { ...state, changeDoNotDisturb: !state.changeDoNotDisturb }
     default:
       console.error(`Invalid action type: ${action.type}`);
       return state;
@@ -24,13 +26,22 @@ const changeNightMode = (dispatch) => async (selectedSetting) => {
   dispatch({ type: "change_night_mode", payload: selectedSetting });
 };
 
+const changeDoNotDisturb = (dispatch) => async (selectedSetting) => {
+  try {
+    await AsyncStorage.setItem("doNotDisturb", JSON.stringify(selectedSetting) );
+  } catch (err) {
+    console.error(err, ": Could not store setting for do not disturb.");
+  }
+  dispatch({ type: "change_do_not_disturb", payload: selectedSetting });
+};
+
 // export
 
-// THIS IS FOR TESTING RIGHT NOW, BUT WE WILL NEED TO STORE THIS DATA LOCALLY
+// STORE THIS DATA LOCALLY
 
 export const { Context, Provider } = createDataContent(
   settingsReducer,
-  { changeNightMode },
+  { changeNightMode, changeDoNotDisturb, },
   // initial settings: nightmode: string (index) = ["off", "on", "auto"] 
   { nightMode: "0", doNotDisturb: false }
 );

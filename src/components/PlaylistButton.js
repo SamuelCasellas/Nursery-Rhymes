@@ -9,7 +9,7 @@ const PlaylistButton = ({ navigation, buttonName, navTo, color }) => {
       <MaterialCommunityIcons 
         style={{ ...styles.playlistButton, color }} 
         name={buttonName}
-        size={35} 
+        size={30} 
         color="black" />
     </TouchableOpacity>
   );
@@ -17,12 +17,12 @@ const PlaylistButton = ({ navigation, buttonName, navTo, color }) => {
 
 const styles = StyleSheet.create({
   playlistButton: {
-    alignSelf: "flex-end",
-    marginRight: 20,
-    marginBottom: 10,
+    marginTop: 10,
+    marginRight: 5,
     padding: 10,
-    borderRadius: 30,
-    borderWidth: 1.5
+    alignSelf: "flex-end"
+    // borderRadius: 27,
+    // borderWidth: 1.5
   }
 });
 

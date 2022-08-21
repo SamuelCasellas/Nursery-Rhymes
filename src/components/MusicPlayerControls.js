@@ -8,7 +8,7 @@ import ShuffleButton from "./ShuffleButton";
 import Constants from "../Constants";
 const { width } = Constants();
 
-import classicalSongs from "../models/classicalSongs";
+import { allSongs } from "../models/allSongs";
 
 
 const MusicPlayerControls = () => {
@@ -17,7 +17,7 @@ const MusicPlayerControls = () => {
     <View style={styles.playControls}>
       <ShuffleButton />
       <TouchableOpacity onPress={() => { } }>
-        <Foundation style={{ marginLeft: 7 }} name="previous" size={30} color="#777777" />
+        <Foundation name="previous" size={30} color="#777777" />
       </TouchableOpacity>
       {/* <PlayButton state={playbackState} setState={togglePlayback}/> */}
       <PlayButton />

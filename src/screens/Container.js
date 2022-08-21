@@ -10,13 +10,14 @@ const Container = ({ children }) => {
 
   useEffect(() => {
     let isMounted = true;
-  
-    const retrieveNightMode = async () => await AsyncStorage.getItem("nightMode");
-    retrieveNightMode().then((value) => {
-      if (isMounted && value) {
-        changeNightMode(value);
-      }
-    }, (reject) => console.error(reject, ": Could not retrieve nigthMode from AS."));
+    if (isMounted) {
+      const retrieveNightMode = async () => await AsyncStorage.getItem("nightMode");
+      retrieveNightMode().then((value) => {
+        if (value) {
+          changeNightMode(value);
+        }
+      }, (reject) => console.error(reject, ": Could not retrieve nigthMode from AS."));
+    }
 
     return () => {
       isMounted = false;

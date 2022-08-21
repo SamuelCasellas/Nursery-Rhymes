@@ -1,20 +1,23 @@
 import React, { useContext, useState } from "react";
-import { View, StyleSheet, SafeAreaView, Dimensions } from "react-native";
+import { View, StyleSheet } from "react-native";
 import { Text } from "react-native-elements"
 import { Context as SettingsContext } from "../context/SettingsContext";
 import DropDownPicker from "react-native-dropdown-picker";
+import SwitchComp from "../components/SwitchComp";
 import Container from "./Container";
 import nightColors from "../hooks/nightColors";
 import { NavigationEvents } from "react-navigation";
+import Constants from "../Constants";
 
 import { FontAwesome } from "@expo/vector-icons";
 
-const { width, height } = Dimensions.get("window");
+const { width, height } = Constants();
 
 const SettingsScreen = () => {
-  const { state: { nightMode }, changeNightMode } = useContext(SettingsContext);
+  const { state: { nightMode }, changeNightMode, changeDoNotDisturb } = useContext(SettingsContext);
   const { textColor } = nightColors(nightMode);
 
+  // Drop down
   const [open, setOpen] = useState(false);
   // TODO: change this to a useEffect so that there is not a frame that shows that the setting is still select an option
   const [value, setValue] = useState(nightMode);
@@ -25,12 +28,12 @@ const SettingsScreen = () => {
   ]);
 
   const children = (
-    <View>
+    <View style={{ marginHorizontal: 15 }}>
       <NavigationEvents
         onDidBlur={() => setOpen(false)}
       />
-      <Text h1 style={{ ...styles.text, color: textColor }}>SettingsScreen</Text>
-      <Text h4 style={{ ...styles.text, color: textColor }}>Theme:</Text>
+      <Text h1 style={{ ...styles.text, color: textColor, alignSelf: "center" }}>Settings</Text>
+      <Text h4 style={{ ...styles.header, color: textColor }}>Theme:</Text>
       <DropDownPicker
         style={styles.dropdown}
         open={open}
@@ -40,12 +43,19 @@ const SettingsScreen = () => {
         setValue={setValue}
         setItems={setItems}
         onChangeValue={changeNightMode} />
+      <View style={{ flexDirection: "row", alignItems: "center" }}>
+        <Text h4 style={{ ...styles.header, marginRight: 120 }}>Do not disturb:</Text>
+        <SwitchComp action={changeDoNotDisturb} />
+      </View>
+      <Text style={{ fontStyle: "italic" }}>When activated, advertisements with audio 
+        will be silenced. When deactivated, similar ads are played
+        only when the app is open and the music is manually paused.</Text>
+      <Text h4 style={styles.header}>About source material:</Text>
+      <Text style={{ fontStyle: "italic" }}>Lorem Ipsum</Text>
     </View>
   );
 
-  return (
-    <Container children={children} />
-  );
+  return <Container children={children} />;
 };
 
 SettingsScreen.navigationOptions = {
@@ -53,6 +63,9 @@ SettingsScreen.navigationOptions = {
 };
 
 const styles = StyleSheet.create({
+  header: {
+    marginVertical: 15
+  },
   text: {
 
   },

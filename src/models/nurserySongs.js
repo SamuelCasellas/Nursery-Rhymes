@@ -1,10 +1,11 @@
-const classicalSongs = [
+// TODO: Add the correct names
+const nurserySongs = [
   {
-    title: "Classical Songs",
+    title: "Nursery Songs",
     artist: "Mozart",
     image: "N/A",
     url: require("../assets/music/Mozart Rondo Alla Turca.mp3"),
-    id: "a",
+    id: "b",
     duration: 215
   },
   {
@@ -12,7 +13,7 @@ const classicalSongs = [
     artist: "Mozart",
     image: "N/A",
     url: require("../assets/music/Mozart Rondo Alla Turca.mp3"),
-    id: 1,
+    id: 11,
     duration: 215
   },
   {
@@ -20,7 +21,7 @@ const classicalSongs = [
     artist: "Mozart",
     image: "N/A",
     url: require("../assets/music/Mozart 12 Variations on a French Nursery Theme K.265 (Theme,Var.1,3,5,8,9,11).mp3"),
-    id: 2,
+    id: 12,
     duration: 467
   },
   {
@@ -28,7 +29,7 @@ const classicalSongs = [
     artist: "Mozart",
     image: "N/A",
     url: require("../assets/music/Mozart 12 Variations on a French Nursery Theme K.265 (Theme,Var.1,3,5,8,9,11).mp3"),
-    id: 3,
+    id: 13,
     duration: 467
   },
   {
@@ -36,7 +37,7 @@ const classicalSongs = [
     artist: "Mozart",
     image: "N/A",
     url: require("../assets/music/Mozart 12 Variations on a French Nursery Theme K.265 (Theme,Var.1,3,5,8,9,11).mp3"),
-    id: 4,
+    id: 14,
     duration: 467
   },
   {
@@ -44,7 +45,7 @@ const classicalSongs = [
     artist: "Mozart",
     image: "N/A",
     url: require("../assets/music/Mozart 12 Variations on a French Nursery Theme K.265 (Theme,Var.1,3,5,8,9,11).mp3"),
-    id: 5,
+    id: 15,
     duration: 467
   },
   {
@@ -52,7 +53,7 @@ const classicalSongs = [
     artist: "Mozart",
     image: "N/A",
     url: require("../assets/music/Mozart 12 Variations on a French Nursery Theme K.265 (Theme,Var.1,3,5,8,9,11).mp3"),
-    id: 6,
+    id: 16,
     duration: 467
   },
   {
@@ -60,7 +61,7 @@ const classicalSongs = [
     artist: "Mozart",
     image: "N/A",
     url: require("../assets/music/Mozart 12 Variations on a French Nursery Theme K.265 (Theme,Var.1,3,5,8,9,11).mp3"),
-    id: 7,
+    id: 17,
     duration: 467
   },
   {
@@ -68,7 +69,7 @@ const classicalSongs = [
     artist: "Mozart",
     image: "N/A",
     url: require("../assets/music/Mozart 12 Variations on a French Nursery Theme K.265 (Theme,Var.1,3,5,8,9,11).mp3"),
-    id: 8,
+    id: 18,
     duration: 467
   },
   {
@@ -76,7 +77,7 @@ const classicalSongs = [
     artist: "Debussy",
     image: "N/A",
     url: require("../assets/music/Debussy Clair de Lune.mp3"),
-    id: 9,
+    id: 19,
     duration: 341
   },
   {
@@ -84,9 +85,9 @@ const classicalSongs = [
     artist: "Mozart",
     image: "N/A",
     url: require("../assets/music/Mozart Rondo Alla Turca.mp3"),
-    id: 10,
+    id: 20,
     duration: 215
   },
 ];
 
-export default classicalSongs;
+export default nurserySongs;

@@ -9,13 +9,12 @@ export default (nightMode) => {
   let titleBarTextColor;
   let titleBarButtonColor;
   let itemDropdownColor;
-  let backGroundColor;
+  let backgroundColor;
   let scrollerColor;
 
   checkNightMode(nightMode)
-  ? (textColor = "white", musicPlayerToggleButton = "yellow", maxTrackTintColor = "gray", titleBarColor = "#4e5157", titleBarTextColor = "white", titleBarButtonColor = "lightblue")
-  : (textColor = "black", musicPlayerToggleButton = "blue", maxTrackTintColor = "lightgray", titleBarColor = "white", titleBarTextColor = "black", titleBarButtonColor = null);
+  ? (textColor = "white", musicPlayerToggleButton = "yellow", maxTrackTintColor = "gray", titleBarColor = "#4e5157", titleBarTextColor = "white", titleBarButtonColor = "lightblue", backgroundColor = "#222831")
+  : (textColor = "black", musicPlayerToggleButton = "blue", maxTrackTintColor = "lightgray", titleBarColor = "white", titleBarTextColor = "black", titleBarButtonColor = null, backgroundColor = "white");
 
-
-  return { textColor, musicPlayerToggleButton, maxTrackTintColor, titleBarColor, titleBarTextColor, titleBarButtonColor };
+  return { textColor, musicPlayerToggleButton, maxTrackTintColor, titleBarColor, titleBarTextColor, titleBarButtonColor, backgroundColor };
 };

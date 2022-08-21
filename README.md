@@ -10,7 +10,7 @@ Create an app for the Google Play Store that features nursery songs for children
   - https://www.youtube.com/watch?v=fOtCxD3AodY
   - https://www.youtube.com/watch?v=-F8twDee9rA
 - How to I configure notifications for the app, such as when to play music for the child?
-- [How do I create a popup screen?](https://github.com/react-native-modal/react-native-modal)
+- [How do I create a popup screen?](https://reactnative.dev/docs/modal)
 - Best way to do animation (for rotating disk [native add possibly..] and for startup loading screen with logo)? Manually through math functions and playing with margins, or some better way?
 - Figure out the database*
 
@@ -60,6 +60,9 @@ January 1, 1927.
 [Songs in the public domain (supposedly)](https://www.pdinfo.com/mobile/pd-music-genres/pd-children-songs.php)
 
 [World map of country copyright laws](https://en.wikipedia.org/wiki/List_of_countries%27_copyright_lengths#/media/File:World_copyright_terms.svg)
+
+## Creative Commons Attribution link ##
+[link](https://docs.google.com/spreadsheets/d/1_ZVSW99C82CW0tuiZUI6mUNebztOZNLHM1qSu52CHX4/edit?usp=sharing)
 
 # Source Music
 
@@ -123,3 +126,5 @@ _Note: All of the nursery song recordings were originals._
 - [Music App UI Guide](https://www.youtube.com/watch?v=fOtCxD3AodY)
 - [Guide for configuring music player](https://www.youtube.com/watch?v=-F8twDee9rA)
 - [Better Music Player Guide](https://www.youtube.com/watch?v=Bxj1spqPOZE)
+- [Switches for SettingsScreen](https://reactnative.dev/docs/switch)
+- [Storing variables other than strings into AsyncStorage](https://stackoverflow.com/questions/59801359/saving-list-with-asyncstorage)
