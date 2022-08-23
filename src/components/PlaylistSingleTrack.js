@@ -15,25 +15,33 @@ const PlaylistSingleTrack = ({ navigation, trackDet, textColor }) => {
   const [text, setText] = useState(trackDet[1]);
   const song = allSongs.find((song) => +trackDet[0] === song.id);
 
+  const changeTextLogic = (newText) => {
+    (newText.match(/^[0-9]+$/) != null || !newText)
+    && !newText.startsWith("0")
+    ? null 
+    : newText = text;
+    setText(newText);
+    setPlaylist(MusicPlaylistsInterpretor.editSongRep(creatingPlaylist, trackDet, newText));
+  }
+
   return (
     <View style={styles.track}>
       <Text h4 style={{ color: textColor }}>{song.title}</Text>
       <View style={{ flexDirection: "row", alignItems: "center" }}>
+        <TouchableOpacity onPress={() => setPlaylist(MusicPlaylistsInterpretor.deleteSong(creatingPlaylist, trackDet))}>
+          <EvilIcons name="trash" size={24} color="black" 
+            style={styles.trash}
+          />
+        </TouchableOpacity>
         <Text style={{ fontSize: 20, marginRight: 5 }}>x</Text>
         <TextInput 
           keyboardType="numeric"
           maxLength={2}
           style={styles.input}
           value={text}
-          onChangeText={setText}
-          // onChangeff
+          onChangeText={changeTextLogic}
         />
       </View>
-      <TouchableOpacity onPress={() => setPlaylist(MusicPlaylistsInterpretor.deleteSong(creatingPlaylist, trackDet))}>
-        <EvilIcons name="trash" size={24} color="black" 
-          style={styles.trash}
-        />
-      </TouchableOpacity>
     </View>
   );
 };
@@ -46,6 +54,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 10,
     width: 29,
+    marginBottom: -3
     // shadowColor: "#000",
     // shadowOffset: {
     //   width: 1,
@@ -64,8 +73,8 @@ const styles = StyleSheet.create({
     alignItems: "center"
   },
   trash: {
-    marginLeft: -10
+    marginRight: 10
   },
 });
-
+//TODO navigation needed?
 export default withNavigation(PlaylistSingleTrack);

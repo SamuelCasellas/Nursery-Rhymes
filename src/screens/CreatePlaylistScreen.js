@@ -1,6 +1,5 @@
-import React, { useContext, useState, useMemo } from "react";
+import React, { useContext, useState, useMemo, useEffect } from "react";
 import { View, StyleSheet, TextInput, Pressable, FlatList, TouchableOpacity } from "react-native";
-import { Text } from "react-native-elements";
 import { NavigationEvents } from "react-navigation";
 import { Context as SettingsContext } from "../context/SettingsContext";
 import { Context as MusicContext } from "../context/MusicContext";
@@ -10,6 +9,7 @@ import Container from "./Container";
 import SongsListModal from "../components/SongsListModal";
 import { MaterialIcons } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import PlaylistSingleTrack from "../components/PlaylistSingleTrack";
 
@@ -18,6 +18,7 @@ import Warning from "../components/Warning";
 const CreatePlaylistScreen = ({ navigation }) => {
   const [sameNameWarning, sameNameWarningVisible] = useState(false);
   const [noSongsWarning, noSongsWarningVisible] = useState(false);
+  const [missingRepeatWarning, missingRepeatWarningVisible] = useState(false);
 
   const { state: { nightMode } } = useContext(SettingsContext);
   const { textColor, 
@@ -30,53 +31,95 @@ const CreatePlaylistScreen = ({ navigation }) => {
   const { 
     state: { listOfPlaylists, 
       creatingPlaylist, 
-      playlistBeingEdited }, 
+      playlistBeingEdited,
+      savedNewPlaylist }, 
     addSongToPlaylist, 
     addPlaylist, 
     deletePlaylist, 
-    setEditingPlaylist } = useContext(MusicContext);
+    setPlaylist,
+    setEditingPlaylist,
+    setNewPlaylist } = useContext(MusicContext);
+
+  const editing = navigation.getParam("item");
 
   const [playlistTitle, setPlaylistTitle] = useState(() => {
-    const edit = navigation.getParam("item");
-    return edit
-    ? edit[0]
-    : "";
+    return editing
+    ? editing[0]
+    : savedNewPlaylist[0];
   });
 
-  // Error checks
+  if (!editing) {
+    useEffect(() => {
+      let isMounted = true;
+      if (isMounted) {
+        // Read save state
+        setPlaylist(savedNewPlaylist[1]);
+      }
+      return () => {
+        isMounted = false;
+      };
+    }, [ ]);
+
+    useEffect(() => {
+      let isMounted = true;
+      if (isMounted) {
+        // Save changes
+        setNewPlaylist([playlistTitle, creatingPlaylist]);
+      }
+      return () => {
+        isMounted = false;
+      };
+    }, [playlistTitle, creatingPlaylist]);
+  }
+
+
+  /**
+   * 
+   * @returns {boolean}
+   */
   const hasSameName = () => {
     if (playlistBeingEdited) {
       // do not include the editing playlist so 
       // the user can keep the same name if desired.
       return listOfPlaylists
-      .filter((p) => p[0] !== playlistBeingEdited[0])
-      .map((p) => p[0])
-      .includes(playlistTitle);
+        .filter((p) => p[0] !== playlistBeingEdited[0])
+        .map((p) => p[0])
+        .includes(playlistTitle);
     }
     return listOfPlaylists
       .map((p) => p[0])
       .includes(playlistTitle);
   };
 
-  const submitLogic = () => {
+  const submitLogic = async () => {
     if (!creatingPlaylist) {
-      noSongsWarningVisible(!noSongsWarning)
+      noSongsWarningVisible(!noSongsWarning);
+    }
+    else if (creatingPlaylist.includes("xs") || creatingPlaylist.endsWith("x")) {
+      missingRepeatWarningVisible(!missingRepeatWarning);
     }
     else if (hasSameName() || !playlistTitle) {
-      sameNameWarningVisible(!sameNameWarning)
+      sameNameWarningVisible(!sameNameWarning);
     } else {
       if (playlistBeingEdited) {
         deletePlaylist(playlistBeingEdited);
       }
+      try {
+        await AsyncStorage.setItem("playlists", JSON.stringify([...listOfPlaylists, [playlistTitle, creatingPlaylist]]));
+      } catch (err) {
+        console.error(err, "could not store playlists in AS");
+      }
       addPlaylist([playlistTitle, creatingPlaylist]);
+      // Clear
+      setPlaylistTitle("");
+      setPlaylist("");
       setEditingPlaylist(null);
+      
       navigation.pop();
     }
   };
 
   const [modalVisible, setModalVisible] = useState(false);
-
-  console.log(creatingPlaylist);
 
   const playlistFLData = MusicPlaylistsInterpretor.listRepresentation(creatingPlaylist);
 
@@ -100,6 +143,7 @@ const CreatePlaylistScreen = ({ navigation }) => {
       />
       <Warning state={noSongsWarning} setState={noSongsWarningVisible} warningText="Minimum 1 song needed." />
       <Warning state={sameNameWarning} setState={sameNameWarningVisible} warningText="Please enter a unique name." />
+      <Warning state={missingRepeatWarning} setState={missingRepeatWarningVisible} warningText="Repeat number(s) missing." />
       <TextInput 
         style={{...styles.textInput, color: textColor}}
         value={playlistTitle}
@@ -118,6 +162,7 @@ const CreatePlaylistScreen = ({ navigation }) => {
       </View>
       <FlatList
         // Songs must be unique due to key extractor
+        style={styles.playlists}
         data={playlistFLData}
         keyExtractor={(key) => key[0]}
         renderItem={({ item }) => 
@@ -171,6 +216,9 @@ const styles = StyleSheet.create({
     padding: 10,
     borderWidth: 2,
     borderRadius: 10,
+  },
+  playlists: {
+    height: "80%"
   }
 });
 

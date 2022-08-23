@@ -73,22 +73,16 @@ class MusicPlaylistsInterpretor {
     // let newPattern = MusicPlaylistsInterpretor.createPattern(newSongId, newSongRep);
     return playlistPattern.replace(songPattern, "");
   }
-
-  // addSong(playlist, songId, songRep, beforeSongId = null) {
-  //   let addSongPattern = MusicPlaylistsInterpretor.createPattern(songId, songRep);
-  //   if (beforeSongId === null) {
-  //     this.playlists[playlist] += addSongPattern;
-  //   } else {
-  //     let playlistPattern = this.playlists[playlist];
-  //     let searchKey = MusicPlaylistsInterpretor.createPattern(songId, songRep);
-  //     let sliceStart = playlistPattern.indexOf(searchKey);
-  //     if (sliceStart === -1)
-  //       console.error(`Programmer's error: ${searchKey} not found in playlist.`);
-  //     this.playlists[playlist] = playlistPattern.slice(0, sliceStart) + addSongPattern + playlistPattern.slice(sliceStart);
-  //   }
-
-  //   this.currPlaylistLength++;
-  // }
+  
+  /**
+   * @returns {string}
+   */
+  static editSongRep(playlistpattern, trackDet, newSongRep) {
+    oldTrackPattern = MusicPlaylistsInterpretor.singleListAsString(trackDet);
+    trackDet[1] = newSongRep;
+    let modSongPattern = MusicPlaylistsInterpretor.singleListAsString(trackDet);
+    return playlistpattern.replace(oldTrackPattern, modSongPattern);
+  }
 
   // get currPlaylistLength() {
   //   return this.currPlaylistLength;

@@ -31,7 +31,7 @@ const MusicShowcase = () => {
   return (
     <>
       <View>
-        <Text style={{ ...styles.songTitle, color: textColor }}>Currently playing: {currentTrack.title}</Text>
+        <Text style={{ ...styles.songTitle, color: textColor }}>{currentTrack.title}</Text>
          {/* <FlatList
           data={allSongs}
           keyExtractor={(item) => item.id}
@@ -65,8 +65,8 @@ const MusicShowcase = () => {
 
 const styles = StyleSheet.create({
   songTitle: {
-    marginTop: -185,
-    fontSize: 18,
+    marginTop: "-50%",
+    fontSize: 30,
     fontWeight: "600",
     textAlign: "center",
   },

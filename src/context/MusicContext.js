@@ -18,8 +18,12 @@ const musicReducer = (state, action) => {
       return { ...state, listOfPlaylists: state.listOfPlaylists.filter((playlist) => playlist[0] !== action.payload[0]) };
     case "add_song_to_playlist":
       return { ...state, creatingPlaylist: state.creatingPlaylist += action.payload };
+    case "retrieve_AS_playlists":
+      return { ...state, listOfPlaylists: action.payload }
     case "set_playlist":
       return { ...state, creatingPlaylist: action.payload }
+    case "set_new_playlist":
+      return { ...state, savedNewPlaylist: action.payload }
     case "set_initial_playlist":
       return { ...state, playlistBeingEdited: action.payload }
     default:
@@ -30,9 +34,18 @@ const musicReducer = (state, action) => {
 
 // actions
 
+// states to save
 const setTrack = (dispatch) => (newTrack) => {
   dispatch({ type: "set_track", payload: newTrack });
 };
+const addPlaylist = (dispatch) => (playlist) => {
+  dispatch({ type: "add_playlist", payload: playlist });
+};
+const deletePlaylist = (dispatch) => (playlist) => {
+  dispatch({ type: "delete_playlist", payload: playlist });
+};
+//
+
 const playPause = (dispatch) => () => {
   dispatch({ type: "play_pause"});
 };
@@ -42,19 +55,17 @@ const changeRepeat = (dispatch) => () => {
 const changeShuffle = (dispatch) => () => {
   dispatch({ type: "change_shuffle"});
 };
-const addPlaylist = (dispatch) => (playlist) => {
-  dispatch({ type: "add_playlist", payload: playlist });
-};
-const deletePlaylist = (dispatch) => (playlist) => {
-  dispatch({ type: "delete_playlist", payload: playlist });
-};
-
 const addSongToPlaylist = (dispatch) => (songPattern) => {
   dispatch({ type: "add_song_to_playlist", payload: songPattern });
 };
-
+const retrieveASPlaylists = (dispatch) => (playlists) => {
+  dispatch({ type: "retrieve_AS_playlists", payload: playlists });
+};
 const setPlaylist = (dispatch) => (songPattern) => {
   dispatch({ type: "set_playlist", payload: songPattern });
+};
+const setNewPlaylist = (dispatch) => (songPattern) => {
+  dispatch({ type: "set_new_playlist", payload: songPattern });
 };
 const setEditingPlaylist = (dispatch) => (playlist) => {
   dispatch({ type: "set_initial_playlist", payload: playlist});
@@ -64,7 +75,7 @@ const setEditingPlaylist = (dispatch) => (playlist) => {
 
 export const { Context, Provider } = createDataContent(
   musicReducer,
-  { setTrack, playPause, changeRepeat, changeShuffle, addPlaylist, addSongToPlaylist, setPlaylist, deletePlaylist, setEditingPlaylist },
+  { setTrack, playPause, changeRepeat, changeShuffle, addPlaylist, addSongToPlaylist, setPlaylist, deletePlaylist, setEditingPlaylist, setNewPlaylist, retrieveASPlaylists },
   // initial music state
-  { currentTrackId: null, playing: false, repeatPos: 0, shufflePos: 0, listOfPlaylists: [], creatingPlaylist: "", currentPlaylist: 0, currentStepper: 0, playlistBeingEdited: null }
-)
+  { currentTrackId: null, playing: false, repeatPos: 0, shufflePos: 0, listOfPlaylists: [], creatingPlaylist: "", currentPlaylist: 0, currentStepper: 0, playlistBeingEdited: null, savedNewPlaylist: ["", ""] }
+);

@@ -19,7 +19,6 @@ const SettingsScreen = () => {
 
   // Drop down
   const [open, setOpen] = useState(false);
-  // TODO: change this to a useEffect so that there is not a frame that shows that the setting is still select an option
   const [value, setValue] = useState(nightMode);
   const [items, setItems] = useState([
     { label: "Light", value: "0" },

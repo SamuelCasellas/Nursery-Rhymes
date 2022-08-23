@@ -10,20 +10,28 @@ const SingleTrack = ({navigation, track, action, textColor, navigateOn }) => {
   
   const { state: { creatingPlaylist } } = useContext(MusicContext);
 
+  let opacity;
+  let activeOpacity;
+  MusicPlaylistsInterpretor.containsSong(creatingPlaylist, track.id) 
+  && !navigateOn
+  ? (opacity = 0.3, activeOpacity = 1 )
+  : (opacity = 1, activeOpacity = 0.2 )
+
   // trackOn: true (navigating from ShowTracksScreen) || false (selecting tracks for playlist)
 
   const selectSong = (trackId) => {
     navigateOn
     ? (action(trackId), navigation.navigate("PlayMusic"))
-    : MusicPlaylistsInterpretor.containsSong(creatingPlaylist, trackId)
-      ? null // TODO: ADD CHECKMARK WHEN A SONG IS SELECTED
+      // For creating playlists
+    : opacity === 0.3
+      ? null
       : action(MusicPlaylistsInterpretor.createPatternDefaultRep(trackId));
   };
 
   return (
-    <TouchableOpacity style={styles.track} onPress={() => selectSong(track.id)}>
-      <Text h4 style={{ color: textColor }}>{track.id}.</Text>
-      <Text h4 style={{ color: textColor }}>{track.title}</Text>
+    <TouchableOpacity activeOpacity={activeOpacity} style={styles.track} onPress={() => selectSong(track.id)}>
+      <Text h4 style={{ color: textColor, opacity }}>{track.id}.</Text>
+      <Text h4 style={{ color: textColor, opacity }}>{track.title}</Text>
     </TouchableOpacity>
   );
 };

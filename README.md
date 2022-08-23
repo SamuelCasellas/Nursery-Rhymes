@@ -41,6 +41,7 @@ Options to look at:
 # Figuring out Google Play
 - [General Guide](https://orangesoft.co/blog/how-to-publish-an-android-app-on-google-play-store)
 - [Rules for apps](https://orangesoft.co/blog/why-google-and-apple-may-remove-your-app)
+- [Legal requirements for app](https://termly.io/resources/articles/legal-requirements-for-apps/)
 - [Best Practices](https://play.google.com/console/about/)
 
 # Figuring out the App Store (iOS)
@@ -106,6 +107,7 @@ _Note: All of the nursery song recordings were originals._
   - Chopin Waltz in A minor
   - Pathetique Sonata, 2nd Mvt.
   - [~~Chopin Nocturne Op. 32 No. 1 in B Major~~](https://musopen.org/music/109-nocturnes-op-32/) [License](https://creativecommons.org/publicdomain/mark/1.0/)
+  - Schumann - Träumerei, "Kinderszenen" No. 7, Scenes from Childhood
 
 - Nursery:
   - She'll be coming round the mountain when she comes
@@ -128,3 +130,4 @@ _Note: All of the nursery song recordings were originals._
 - [Better Music Player Guide](https://www.youtube.com/watch?v=Bxj1spqPOZE)
 - [Switches for SettingsScreen](https://reactnative.dev/docs/switch)
 - [Storing variables other than strings into AsyncStorage](https://stackoverflow.com/questions/59801359/saving-list-with-asyncstorage)
+-[override react native style](https://stackoverflow.com/questions/48823823/override-react-native-style)
