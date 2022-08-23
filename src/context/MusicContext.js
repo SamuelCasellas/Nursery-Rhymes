@@ -19,13 +19,13 @@ const musicReducer = (state, action) => {
     case "add_song_to_playlist":
       return { ...state, creatingPlaylist: state.creatingPlaylist += action.payload };
     case "retrieve_AS_playlists":
-      return { ...state, listOfPlaylists: action.payload }
+      return { ...state, listOfPlaylists: action.payload };
     case "set_playlist":
-      return { ...state, creatingPlaylist: action.payload }
+      return { ...state, creatingPlaylist: action.payload };
     case "set_new_playlist":
-      return { ...state, savedNewPlaylist: action.payload }
+      return { ...state, savedNewPlaylist: action.payload };
     case "set_initial_playlist":
-      return { ...state, playlistBeingEdited: action.payload }
+      return { ...state, playlistBeingEdited: action.payload };
     default:
       console.error(`Invalid action type: ${action.type}`);
       return state;
@@ -45,7 +45,6 @@ const deletePlaylist = (dispatch) => (playlist) => {
   dispatch({ type: "delete_playlist", payload: playlist });
 };
 //
-
 const playPause = (dispatch) => () => {
   dispatch({ type: "play_pause"});
 };

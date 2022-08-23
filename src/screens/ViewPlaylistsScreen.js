@@ -35,7 +35,6 @@ const ViewPlaylistsScreen = ({ navigation }) => {
         }
       }, (reject) => console.error(reject, ": Could not retrieve playlists from AS."));
     }
-
     return () => {
       isMounted = false;
     };
@@ -49,11 +48,13 @@ const ViewPlaylistsScreen = ({ navigation }) => {
 
   // TODO: Go to the PlaytMusic Screen with this playlist in the queue.
   const renderSinglePlaylist = ({ item, index }) => <TouchableOpacity style={styles.singlePlaylist}>
-    <Text style={{ marginLeft: 15, fontSize: 20 }}>{index+1}.{"\t"}{item[0]}</Text>
+    <Text numberOfLines={1} style={styles.playlistTitle}>
+      {index+1}.{"\t"}{item[0]}
+    </Text>
     <View style={styles.rowElement}>
       <View style={styles.rowElement}>
         <TouchableOpacity onPress={() => {
-          // For reference at termination of editing          
+          // For reference at termination of editing
           setEditingPlaylist(item);
           // Chosen playlist songs embedded: useContext
           setPlaylist(item[1]);
@@ -62,7 +63,17 @@ const ViewPlaylistsScreen = ({ navigation }) => {
         }}>
           <EvilIcons style={styles.playlistIcons} name="pencil" size={36} color="black" />
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => deletePlaylist(item)}>
+        <TouchableOpacity onPress={async () => {
+          deletePlaylist(item);
+          try {
+            await AsyncStorage.setItem("playlists", JSON.stringify(
+              listOfPlaylists
+              .filter((p) => p[0] !== item[0])))
+              .catch((rej) => console.error(rej, "could not store playlists in AS"))
+          } catch (err) {
+            console.error(err, "could not store playlists in AS");
+            }
+          }}>
           <EvilIcons style={styles.playlistIcons} name="trash" size={36} color="black" />
         </TouchableOpacity>
       </View>
@@ -134,6 +145,11 @@ const styles = StyleSheet.create({
     borderTopWidth: 1,
     alignItems: "center",
     justifyContent: "space-between"
+  },
+  playlistTitle: {
+    marginLeft: 15, 
+    fontSize: 20, 
+    flex: 1
   },
   playlistIcons: {
     marginHorizontal: 5,

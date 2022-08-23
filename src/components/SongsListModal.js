@@ -9,11 +9,6 @@ const { width, height } = Constants();
 
 const SongsListModal = ({ modalVisible, setModalVisible, addSongToPlaylist, textColor, backgroundColor}) => {
   const MusicList = React.lazy(() => import("../components/MusicList"));
-  
-  // let musicSelected;
-  // creatingPlaylist.includes(MusicPlaylistsInterpretor.createPattern(trackDet[0]))
-  // ? 
-  // : 
 
   return <Modal
     style={styles.modal}
@@ -51,6 +46,7 @@ const styles = StyleSheet.create({
     //marginTop: -10,
   },
   musicListPopup: {
+    marginTop: 40,
     borderTopWidth: 2,
     maxHeight: height,
     marginVertical: 20,

@@ -101,11 +101,16 @@ const CreatePlaylistScreen = ({ navigation }) => {
     else if (hasSameName() || !playlistTitle) {
       sameNameWarningVisible(!sameNameWarning);
     } else {
-      if (playlistBeingEdited) {
-        deletePlaylist(playlistBeingEdited);
-      }
+      let filterEditing;
+      playlistBeingEdited
+      ? (deletePlaylist(playlistBeingEdited), filterEditing = playlistBeingEdited[0])
+      : filterEditing = null;
       try {
-        await AsyncStorage.setItem("playlists", JSON.stringify([...listOfPlaylists, [playlistTitle, creatingPlaylist]]));
+        // New state does not register here with the removed 
+        // editing playlist. Manually remove before storing.
+        await AsyncStorage.setItem("playlists", JSON.stringify(
+          [...listOfPlaylists, [playlistTitle, creatingPlaylist]]
+          .filter((p) => p[0] !== filterEditing)));
       } catch (err) {
         console.error(err, "could not store playlists in AS");
       }
@@ -145,10 +150,13 @@ const CreatePlaylistScreen = ({ navigation }) => {
       <Warning state={sameNameWarning} setState={sameNameWarningVisible} warningText="Please enter a unique name." />
       <Warning state={missingRepeatWarning} setState={missingRepeatWarningVisible} warningText="Repeat number(s) missing." />
       <TextInput 
+        maxLength={75}
         style={{...styles.textInput, color: textColor}}
         value={playlistTitle}
         onChangeText={setPlaylistTitle}
         placeholder="Playlist name"
+        autoCapitalize="none"
+        autoCorrect={false}
       />
       {DisplayModal}
       <View style={{ flexDirection: "row", justifyContent: "space-around" }}>
