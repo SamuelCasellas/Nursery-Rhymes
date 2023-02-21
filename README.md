@@ -1,3 +1,6 @@
+Figma design: 
+https://www.figma.com/proto/UbSmUsq6Fw4XnVlIBWnPOf/Bubo-Owl%3A-Baby-Music?node-id=114%3A261&scaling=scale-down&page-id=0%3A1&starting-point-node-id=114%3A261
+
 Create an app for the Google Play Store that features nursery songs for children
 
 # Built with React Native
